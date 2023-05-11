@@ -1,0 +1,48 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Ejemplo de API
+  description: Esta es una API de ejemplo.
+host: example.com
+schemes:
+  - https
+paths:
+  /users:
+    get:
+      summary: Obtiene una lista de usuarios.
+      description: Devuelve una lista de todos los usuarios en el sistema.
+      responses:
+        '200':
+          description: Lista de usuarios devuelta correctamente.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+    post:
+      summary: Crea un nuevo usuario.
+      description: Crea un nuevo usuario en el sistema.
+      parameters:
+        - name: user
+          in: body
+          description: Información del usuario que se creará.
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: Usuario creado correctamente.
+        '400':
+          description: La solicitud es incorrecta.
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: ID único del usuario.
+      name:
+        type: string
+        description: Nombre del usuario.
+      email:
+        type: string
+        description: Correo electrónico del usuario.
